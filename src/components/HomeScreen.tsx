@@ -69,7 +69,6 @@ export default function HomeScreen({ profile, sessions, setScreen }: HomeScreenP
           </div>
         </div>
       )}
-      <button onClick={() => setScreen('dashboard')}>View Progress</button>
     </div>
   );
 }
