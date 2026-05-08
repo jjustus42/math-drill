@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { StudentProfile, Session, Screen, Operation, DifficultyLevel } from '../types';
+import type { StudentProfile, Session, Operation, DifficultyLevel } from '../types';
 import { 
   deriveAchievementsFromSessions, 
   getOperationSymbol, 
@@ -14,10 +14,9 @@ import {
 interface DashboardScreenProps {
   profile: StudentProfile | null;
   sessions: Session[];
-  setScreen: (screen: Screen) => void;
 }
 
-export default function DashboardScreen({ profile, sessions, setScreen }: DashboardScreenProps) {
+export default function DashboardScreen({ profile, sessions }: DashboardScreenProps) {
   const [showAllAchievements, setShowAllAchievements] = useState(false);
 
   if (!profile) return <div>No profile found.</div>;
@@ -53,7 +52,6 @@ export default function DashboardScreen({ profile, sessions, setScreen }: Dashbo
   return (
     <div className="dashboard-screen">
       <h1>Progress Dashboard</h1>
-      <button onClick={() => setScreen('settings')}>Settings</button>
       
       <h2>Current Difficulty Levels</h2>
       <ul>
@@ -175,7 +173,6 @@ export default function DashboardScreen({ profile, sessions, setScreen }: Dashbo
         </>
       )}
       
-      <button onClick={() => setScreen('home')}>Back to Home</button>
     </div>
   );
 }

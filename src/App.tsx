@@ -17,6 +17,7 @@ import DrillScreen from './components/DrillScreen';
 import SummaryScreen from './components/SummaryScreen';
 import DashboardScreen from './components/DashboardScreen';
 import SettingsScreen from './components/SettingsScreen';
+import NavBar from './components/NavBar';
 import './App.css';
 import type { Achievement } from './types';
 
@@ -101,7 +102,7 @@ function App() {
       case 'summary':
         return <SummaryScreen session={lastSession} increasedOps={increasedOps} xpGain={xpGain} newAchievements={newAchievements} setScreen={setScreen} />;
       case 'dashboard':
-        return <DashboardScreen profile={profile} sessions={sessions} setScreen={setScreen} />;
+        return <DashboardScreen profile={profile} sessions={sessions} />;
       case 'settings':
         return (
           <SettingsScreen
@@ -109,7 +110,6 @@ function App() {
             sessions={sessions}
             updateProfile={updateProfile}
             clearProfileData={clearProfileData}
-            setScreen={setScreen}
           />
         );
       default:
@@ -125,6 +125,9 @@ function App() {
 
   return (
     <div className="app">
+      {profile && screen !== 'profile-create' && screen !== 'drill' && screen !== 'summary' && (
+        <NavBar currentScreen={screen} setScreen={setScreen} />
+      )}
       {renderScreen()}
     </div>
   );

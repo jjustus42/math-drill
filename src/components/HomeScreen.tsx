@@ -46,7 +46,6 @@ export default function HomeScreen({ profile, sessions, setScreen }: HomeScreenP
 
       <button disabled={!canStart} onClick={() => setScreen('drill')}>Start Math Drill</button>
       {!canStart && <div className="warning">No operations selected in settings. Go to settings to choose at least one.</div>}
-      <button onClick={() => setScreen('settings')}>Settings</button>
 
       {recentAchievements.length > 0 && (
         <div className="home-achievements-section">

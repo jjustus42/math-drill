@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { StudentProfile, Screen, Session, Operation, DifficultyLevel } from '../types';
+import type { StudentProfile, Session, Operation, DifficultyLevel } from '../types';
 import { getOperationSymbol, generateSessionHistoryCsv, downloadCsv } from '../utils';
 
 interface SettingsScreenProps {
@@ -7,7 +7,6 @@ interface SettingsScreenProps {
   sessions: Session[];
   updateProfile: (profile: StudentProfile) => void;
   clearProfileData: () => void;
-  setScreen: (screen: Screen) => void;
 }
 
 const operations: Operation[] = ['add', 'sub', 'mul', 'div'];
@@ -18,7 +17,7 @@ const difficultyLabels: Record<DifficultyLevel, string> = {
   4: 'Advanced',
 };
 
-export default function SettingsScreen({ profile, sessions, updateProfile, clearProfileData, setScreen }: SettingsScreenProps) {
+export default function SettingsScreen({ profile, sessions, updateProfile, clearProfileData }: SettingsScreenProps) {
   const [showClearConfirmation, setShowClearConfirmation] = useState(false);
   const [name, setName] = useState(profile?.name ?? '');
   const [selectedAvatar, setSelectedAvatar] = useState(profile?.avatar ?? '🐶');
@@ -196,9 +195,6 @@ export default function SettingsScreen({ profile, sessions, updateProfile, clear
         )}
       </div>
 
-      <div className="settings-actions">
-        <button onClick={() => setScreen('home')}>Back to Home</button>
-      </div>
     </div>
   );
 }

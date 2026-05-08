@@ -5,6 +5,34 @@
   padding: 20px;
 }
 
+.nav-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+.nav-bar button {
+  padding: 8px 16px;
+  background-color: #e0e0e0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.nav-bar button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.nav-bar button:hover:not(.active) {
+  background-color: #d0d0d0;
+}
+
 .home-screen, .profile-create-screen, .drill-screen, .summary-screen, .dashboard-screen {
   text-align: center;
 }
