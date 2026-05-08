@@ -5,6 +5,8 @@ import {
   loadSessions,
   saveProfile,
   saveSessions,
+  clearProfile,
+  clearSessions,
   adjustDifficultyLevels,
   calculateXpGain,
   deriveAchievementsFromSessions,
@@ -36,23 +38,12 @@ function App() {
   };
 
   const clearProfileData = () => {
-    if (!profile) return;
-
-    const resetProfile: StudentProfile = {
-      name: '',
-      avatar: '🐶',
-      difficultyLevels: { add: 1, sub: 1, mul: 1, div: 1 },
-      settings: {
-        problemsPerSession: 10,
-        includedOperations: ['add', 'sub', 'mul', 'div'],
-      },
-    };
-
-    setProfile(resetProfile);
-    saveProfile(resetProfile);
+    clearProfile();
+    clearSessions();
+    setProfile(null);
     setSessions([]);
-    saveSessions([]);
-    setNumProblems(resetProfile.settings.problemsPerSession);
+    setNumProblems(10);
+    setScreen('profile-create');
   };
 
   const addSession = (session: Session) => {

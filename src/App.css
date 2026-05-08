@@ -357,6 +357,25 @@ input {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.home-achievements-section {
+  margin-top: 30px;
+}
+
+.home-achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.home-achievements-section .achievement-card {
+  min-height: 140px;
+}
+
+.home-achievements-section .view-more-container {
+  margin-top: 20px;
+}
+
 .view-more-container {
   text-align: center;
   margin: 20px 0;

@@ -82,9 +82,17 @@ export function saveSessions(sessions: Session[]): void {
   localStorage.setItem(SESSIONS_KEY, JSON.stringify(sessions));
 }
 
+export function clearSessions(): void {
+  localStorage.removeItem(SESSIONS_KEY);
+}
+
 export function loadSessions(): Session[] {
   const data = localStorage.getItem(SESSIONS_KEY);
   return data ? JSON.parse(data) : [];
+}
+
+export function clearProfile(): void {
+  localStorage.removeItem(PROFILE_KEY);
 }
 
 export function generateSessionHistoryCsv(sessions: Session[]): string {

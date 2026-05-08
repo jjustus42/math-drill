@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import type { StudentProfile, Screen, Session } from '../types';
-import { deriveAchievementsFromSessions, getXpProgressFromSessions } from '../utils';
+import { deriveAchievementsFromSessions, getAchievementDescription, getXpProgressFromSessions } from '../utils';
 
 interface HomeScreenProps {
   profile: StudentProfile | null;
@@ -23,6 +23,7 @@ export default function HomeScreen({ profile, sessions, setScreen }: HomeScreenP
   const { totalXp, currentLevel, xpInLevel, xpForLevel, xpToNextLevel } = getXpProgressFromSessions(sessions);
   const xpProgressPercent = xpForLevel === 0 ? 0 : (xpInLevel / xpForLevel) * 100;
   const achievements = deriveAchievementsFromSessions(sessions);
+  const recentAchievements = [...achievements].sort((a, b) => b.earnedAt - a.earnedAt).slice(0, 6);
 
   return (
     <div className="home-screen">
@@ -45,15 +46,31 @@ export default function HomeScreen({ profile, sessions, setScreen }: HomeScreenP
 
       <button disabled={!canStart} onClick={() => setScreen('drill')}>Start Math Drill</button>
       {!canStart && <div className="warning">No operations selected in settings. Go to settings to choose at least one.</div>}
-      <button onClick={() => setScreen('dashboard')}>View Progress</button>
       <button onClick={() => setScreen('settings')}>Settings</button>
-      
-      {achievements.length > 0 && (
-        <div className="achievements-preview">
-          <h3>Achievements ({achievements.length})</h3>
-          <p>You've earned {achievements.length} achievement{achievements.length !== 1 ? 's' : ''}!</p>
+
+      {recentAchievements.length > 0 && (
+        <div className="home-achievements-section">
+          <h2>Recent Achievements</h2>
+          <div className="home-achievements-grid">
+            {recentAchievements.map((achievement) => {
+              const desc = getAchievementDescription(achievement.type);
+              return (
+                <div key={achievement.id} className="achievement-card">
+                  <div className="achievement-emoji">{desc.emoji}</div>
+                  <div className="achievement-name">{desc.title}</div>
+                  <div className="achievement-description">{desc.description}</div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="view-more-container">
+            <button onClick={() => setScreen('dashboard')}>
+              View More
+            </button>
+          </div>
         </div>
       )}
+      <button onClick={() => setScreen('dashboard')}>View Progress</button>
     </div>
   );
 }

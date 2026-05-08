@@ -20,6 +20,8 @@ const difficultyLabels: Record<DifficultyLevel, string> = {
 
 export default function SettingsScreen({ profile, sessions, updateProfile, clearProfileData, setScreen }: SettingsScreenProps) {
   const [showClearConfirmation, setShowClearConfirmation] = useState(false);
+  const [name, setName] = useState(profile?.name ?? '');
+  const [selectedAvatar, setSelectedAvatar] = useState(profile?.avatar ?? '🐶');
 
   if (!profile) {
     return <div>No profile found.</div>;
@@ -34,6 +36,17 @@ export default function SettingsScreen({ profile, sessions, updateProfile, clear
       },
     };
     updateProfile(updated);
+  };
+
+  const handleProfileSave = () => {
+    const trimmedName = name.trim();
+    if (!trimmedName) return;
+    const updatedProfile = {
+      ...profile,
+      name: trimmedName,
+      avatar: selectedAvatar,
+    };
+    updateProfile(updatedProfile);
   };
 
   const handleToggleOperation = (operation: Operation) => {
@@ -77,6 +90,37 @@ export default function SettingsScreen({ profile, sessions, updateProfile, clear
   return (
     <div className="settings-screen">
       <h1>Settings</h1>
+      <div className="settings-section">
+        <h2>Student Profile</h2>
+        <label className="field-label">
+          Student Name:
+          <input
+            type="text"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+            placeholder="Enter student name"
+          />
+        </label>
+        <div className="field-label">
+          Choose Avatar:
+          <div className="avatar-selection" role="group" aria-label="Avatar selection">
+            {['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'].map((avatar) => (
+              <button
+                key={avatar}
+                type="button"
+                className={selectedAvatar === avatar ? 'selected' : ''}
+                onClick={() => setSelectedAvatar(avatar)}
+              >
+                {avatar}
+              </button>
+            ))}
+          </div>
+        </div>
+        <button onClick={handleProfileSave} disabled={!name.trim()}>
+          Save Profile
+        </button>
+      </div>
+
       <div className="settings-section">
         <h2>Session Size</h2>
         <div className="radio-group">
