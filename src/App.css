@@ -438,3 +438,203 @@ input {
   font-size: 0.9em;
   color: var(--text-muted);
 }
+
+/* Settings screen styles */
+.settings-screen {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.settings-screen h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.settings-section {
+  background: var(--surface-strong);
+  border: 1px solid var(--surface-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+.settings-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--text-h);
+  font-size: 1.25em;
+}
+
+.field-label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.field-label input {
+  margin-top: 8px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.avatar-selection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+
+.avatar-selection button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  width: 60px;
+  height: 60px;
+  background: var(--surface);
+  transition: all 0.2s ease;
+}
+
+.avatar-selection button:hover {
+  background: var(--surface-muted);
+}
+
+.avatar-selection button.selected {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.radio-group label:hover {
+  background: var(--surface-muted);
+}
+
+.radio-group input[type="radio"] {
+  margin: 0;
+}
+
+.operation-toggle-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.operation-toggle-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.operation-toggle-group label:hover {
+  background: var(--surface-muted);
+}
+
+.operation-toggle-group input[type="checkbox"] {
+  margin: 0;
+}
+
+.difficulty-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.difficulty-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 8px;
+}
+
+.difficulty-row span {
+  font-size: 1.2em;
+  min-width: 40px;
+  text-align: center;
+}
+
+.difficulty-row select {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--surface-border);
+  border-radius: 6px;
+  background: var(--surface);
+  font-size: 1rem;
+}
+
+.info {
+  font-size: 0.9em;
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+.confirmation-dialog {
+  background: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px 0;
+  text-align: left;
+}
+
+.confirmation-dialog p {
+  margin: 0 0 16px 0;
+  line-height: 1.5;
+}
+
+.settings-section button {
+  margin-top: 16px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.settings-section button:hover:not(.danger) {
+  background: var(--surface-muted);
+}
+
+.settings-section button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
