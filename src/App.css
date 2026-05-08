@@ -47,9 +47,28 @@ button {
 }
 
 button.danger {
-  background-color: #dc3545;
-  color: white;
-  border: none;
+  background-color: var(--danger);
+  color: #ffffff;
+  border: 1px solid #a71d2a;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  font-weight: 700;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+button.danger:hover {
+  background-color: #c82333;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+}
+
+button.danger:active {
+  background-color: #b21f2d;
+  transform: translateY(1px);
+}
+
+button.danger:focus-visible {
+  outline: 3px solid rgba(220, 53, 69, 0.35);
+  outline-offset: 2px;
 }
 
 .confirmation-dialog {
@@ -638,6 +657,21 @@ input {
   background: var(--surface);
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+.settings-section button.danger {
+  background: var(--danger);
+  color: #ffffff;
+  border-color: #a71d2a;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.settings-section button.danger:hover {
+  background: #c82333;
+}
+
+.settings-section button.danger:active {
+  background: #b21f2d;
 }
 
 .settings-section button:hover:not(.danger) {
