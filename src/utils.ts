@@ -1,4 +1,4 @@
-import type { Operation, DifficultyLevel, Problem, StudentProfile, Session, Attempt, ProfileSettings } from './types';
+import type { Operation, DifficultyLevel, Problem, StudentProfile, Session, Attempt, ProfileSettings, Achievement, AchievementType } from './types';
 
 const DEFAULT_SETTINGS: ProfileSettings = {
   problemsPerSession: 10,
@@ -278,8 +278,6 @@ export function calculateDailyStreak(sessions: Session[]): number {
 
   return streak;
 }
-
-import type { Achievement, AchievementType } from './types';
 
 const DEFAULT_DIFFICULTY_LEVELS: Record<Operation, DifficultyLevel> = {
   add: 1,
