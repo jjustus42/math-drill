@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { StudentProfile, Session, Operation, DifficultyLevel } from '../types';
 import { getOperationSymbol, generateSessionHistoryCsv, downloadCsv } from '../utils';
+import { AVAILABLE_AVATARS } from '../constants/avatars';
 
 interface SettingsScreenProps {
   profile: StudentProfile | null;
@@ -110,7 +111,7 @@ export default function SettingsScreen({ profile, sessions, updateProfile, clear
         <div className="field-label">
           Choose Avatar:
           <div className="avatar-selection" role="group" aria-label="Avatar selection">
-            {['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'].map((avatar) => (
+            {AVAILABLE_AVATARS.map((avatar) => (
               <button
                 key={avatar}
                 type="button"

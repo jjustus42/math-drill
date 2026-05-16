@@ -1,12 +1,12 @@
 import { useState, type FormEvent } from 'react';
 import type { StudentProfile, Screen, Operation, DifficultyLevel } from '../types';
+import { AVAILABLE_AVATARS, DEFAULT_AVATAR } from '../constants/avatars';
 
 interface ProfileCreateScreenProps {
   setProfile: (profile: StudentProfile) => void;
   setScreen: (screen: Screen) => void;
 }
 
-const avatars = ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼'];
 const defaultDifficultyLevels: Record<Operation, DifficultyLevel> = { add: 1, sub: 1, mul: 1, div: 1 };
 const defaultSettings = {
   problemsPerSession: 10 as const,
@@ -62,7 +62,7 @@ const difficultyOptions = [
 
 export default function ProfileCreateScreen({ setProfile, setScreen }: ProfileCreateScreenProps) {
   const [name, setName] = useState('');
-  const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
+  const [selectedAvatar, setSelectedAvatar] = useState(DEFAULT_AVATAR);
   const [difficultyLevels, setDifficultyLevels] = useState<Record<Operation, DifficultyLevel>>(defaultDifficultyLevels);
 
   const handleDifficultyChange = (operation: Operation, value: DifficultyLevel) => {
@@ -113,7 +113,7 @@ export default function ProfileCreateScreen({ setProfile, setScreen }: ProfileCr
         <div className="field-label">
           Choose Avatar:
           <div className="avatar-selection" role="group" aria-label="Avatar selection">
-            {avatars.map((avatar) => (
+            {AVAILABLE_AVATARS.map((avatar) => (
               <button
                 key={avatar}
                 type="button"
