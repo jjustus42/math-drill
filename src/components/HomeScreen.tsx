@@ -44,7 +44,7 @@ export default function HomeScreen({ profile, sessions, setScreen }: HomeScreenP
         <div className="xp-text">{xpInLevel} / {xpForLevel} XP toward next level</div>
       </div>
 
-      <button disabled={!canStart} onClick={() => setScreen('drill')}>Start Math Drill</button>
+      <button className="primary-button" disabled={!canStart} onClick={() => setScreen('drill')}>Start Math Drill</button>
       {!canStart && <div className="warning">No operations selected in settings. Go to settings to choose at least one.</div>}
 
       {recentAchievements.length > 0 && (
@@ -63,7 +63,7 @@ export default function HomeScreen({ profile, sessions, setScreen }: HomeScreenP
             })}
           </div>
           <div className="view-more-container">
-            <button onClick={() => setScreen('dashboard')}>
+            <button className="primary-button" onClick={() => setScreen('dashboard')}>
               View More
             </button>
           </div>

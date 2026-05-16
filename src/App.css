@@ -3,13 +3,17 @@
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .nav-bar {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 20px;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   gap: 10px;
-  margin-bottom: 20px;
   padding: 10px;
   background-color: var(--surface-strong);
   border: 1px solid var(--surface-border);
@@ -35,8 +39,10 @@
   background-color: var(--surface-muted);
 }
 
-.home-screen, .profile-create-screen, .drill-screen, .summary-screen, .dashboard-screen {
+.home-screen, .profile-create-screen, .drill-screen, .summary-screen, .dashboard-screen, .settings-screen {
   text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 button {
@@ -189,6 +195,20 @@ input {
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
+.settings-screen .avatar-selection {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.settings-screen .avatar-selection button {
+  width: 72px;
+  height: 72px;
+  font-size: 2.25em;
+  margin: 0;
+}
+
 .avatar-selection button:hover {
   background: var(--surface-muted);
 }
@@ -242,15 +262,17 @@ input {
 
 .score-display {
   margin: 20px auto;
-  padding: 24px 20px;
+  padding: 16px 16px;
   background: var(--surface-strong);
   border: 1px solid var(--surface-border);
   border-radius: 18px;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   min-width: 260px;
+  min-height: 180px;
   max-width: 100%;
 }
 
@@ -264,6 +286,7 @@ input {
   color: var(--text-muted);
   max-width: 320px;
   text-align: center;
+  margin-top: 15px;
 }
 
 .time-display {
@@ -274,6 +297,44 @@ input {
 .performance-message {
   font-size: 1.2em;
   margin: 20px 0;
+}
+
+.new-achievements {
+  margin-top: 20px;
+  padding: 20px;
+  background: var(--surface-strong);
+  border: 1px solid var(--surface-border);
+  border-radius: 18px;
+}
+
+.achievement-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.achievement-item:last-child {
+  border-bottom: none;
+}
+
+.achievement-emoji {
+  font-size: 1.5em;
+}
+
+.achievement-title {
+  font-weight: 600;
+}
+
+.summary-screen .achievement-title {
+  color: white;
 }
 
 .celebration {
@@ -418,6 +479,12 @@ input {
   font-size: 1.1em;
 }
 
+.difficulty-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+}
+
 .achievements-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -472,6 +539,11 @@ input {
   margin-bottom: 5px;
 }
 
+.home-achievements-section .achievement-name,
+.dashboard-screen .achievement-name {
+  color: white;
+}
+
 .achievement-description {
   font-size: 0.9em;
   color: var(--text-muted);
@@ -479,24 +551,68 @@ input {
 
 /* Settings screen styles */
 .settings-screen {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 0 20px 20px;
   text-align: left;
 }
 
 .settings-screen h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
-.settings-section {
+.settings-section,
+.dashboard-section {
   background: var(--surface-strong);
   border: 1px solid var(--surface-border);
   border-radius: 12px;
   padding: 24px;
   margin-bottom: 24px;
   box-shadow: 0 2px 4px var(--shadow);
+}
+
+.dashboard-screen {
+  text-align: left;
+}
+
+.home-screen h1 {
+  margin-bottom: 0;
+}
+
+.home-screen .avatar {
+  font-size: 4rem;
+  margin: 40px auto 24px;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--surface-border);
+  border-radius: 18px;
+  background: var(--surface);
+}
+
+.profile-create-screen h1,
+.drill-screen h1,
+.summary-screen h1 {
+  margin-bottom: 20px;
+}
+
+.privacy-screen h1,
+.dashboard-screen h1 {
+  margin-bottom: 40px;
+}
+
+.dashboard-screen h1 {
+  text-align: center;
+}
+
+.settings-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: var(--text-h);
+  font-size: 1.25em;
 }
 
 .settings-section h2 {
@@ -668,6 +784,17 @@ input {
   background: var(--surface);
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+button.primary-button {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+button.primary-button:hover:not(:disabled) {
+  background-color: #0056b3;
+  border-color: #0056b3;
 }
 
 .settings-section button.danger {

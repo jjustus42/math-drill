@@ -7,6 +7,7 @@ interface SummaryScreenProps {
   xpGain: number;
   newAchievements: Achievement[];
   setScreen: (screen: Screen) => void;
+  showMainMenu: boolean;
 }
 
 function getPerformanceMessage(percentage: number): string {
@@ -17,7 +18,7 @@ function getPerformanceMessage(percentage: number): string {
   return "Keep trying! You'll improve with practice! 🚀";
 }
 
-export default function SummaryScreen({ session, increasedOps, xpGain, newAchievements, setScreen }: SummaryScreenProps) {
+export default function SummaryScreen({ session, increasedOps, xpGain, newAchievements, setScreen, showMainMenu }: SummaryScreenProps) {
   if (!session) {
     return (
       <div className="summary-screen">
@@ -76,7 +77,7 @@ export default function SummaryScreen({ session, increasedOps, xpGain, newAchiev
         </div>
       )}
       
-      <button onClick={() => setScreen('home')}>Back to Home</button>
+      {!showMainMenu && <button onClick={() => setScreen('home')}>Back to Home</button>}
     </div>
   );
 }

@@ -122,7 +122,7 @@ export default function SettingsScreen({ profile, sessions, updateProfile, clear
             ))}
           </div>
         </div>
-        <button onClick={handleProfileSave} disabled={!name.trim()}>
+        <button className="primary-button" onClick={handleProfileSave} disabled={!name.trim()}>
           Save Profile
         </button>
       </div>
@@ -183,7 +183,11 @@ export default function SettingsScreen({ profile, sessions, updateProfile, clear
 
       <div className="settings-section">
         <h2>Data Management</h2>
-        <button onClick={handleExport} disabled={!canExport}>
+        <button
+          className={canExport ? 'primary-button' : undefined}
+          onClick={handleExport}
+          disabled={!canExport}
+        >
           Export Session History as CSV
         </button>
         {!canExport && <p className="info">Complete at least one session before exporting history.</p>}

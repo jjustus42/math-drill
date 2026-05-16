@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import type { StudentProfile, Session, Operation, DifficultyLevel } from '../types';
-import { 
-  deriveAchievementsFromSessions, 
-  getOperationSymbol, 
+import {
+  deriveAchievementsFromSessions,
+  getOperationSymbol,
   getAchievementDescription,
   getSessionsInTimeRange,
   getAccuracyByOperation,
   getSessionScoresOverTime,
   getWeakestOperation,
-  calculateDailyStreak
+  calculateDailyStreak,
 } from '../utils';
 
 interface DashboardScreenProps {
@@ -52,27 +52,32 @@ export default function DashboardScreen({ profile, sessions }: DashboardScreenPr
   return (
     <div className="dashboard-screen">
       <h1>Progress Dashboard</h1>
-      
-      <h2>Current Difficulty Levels</h2>
-      <ul>
-        {entries.map(([op, level]) => (
-          <li key={op}>
-            {getOperationSymbol(op)}: Level {level} (Overall Accuracy: {getAccuracy(op)}%)
-          </li>
-        ))}
-      </ul>
+
+      <div className="dashboard-section">
+        <h2>Current Difficulty Levels</h2>
+        <ul className="difficulty-list">
+          {entries.map(([op, level]) => (
+            <li key={op}>
+              {getOperationSymbol(op)}: Level {level} (Overall Accuracy: {getAccuracy(op)}%)
+            </li>
+          ))}
+        </ul>
+      </div>
 
       {weakestOp && (
-        <div className="focus-area">
-          <h2>🎯 Area to Focus On</h2>
-          <p>Your lowest accuracy is in <strong>{getOperationSymbol(weakestOp)}</strong>. 
-             Consider practicing this operation more!</p>
+        <div className="dashboard-section">
+          <div className="focus-area">
+            <h2>🎯 Area to Focus On</h2>
+            <p>Your lowest accuracy is in <strong>{getOperationSymbol(weakestOp)}</strong>. 
+               Consider practicing this operation more!</p>
+          </div>
         </div>
       )}
       
-      <h2>Accuracy by Time Period</h2>
-      <div className="accuracy-table">
-        <table>
+      <div className="dashboard-section">
+        <h2>Accuracy by Time Period</h2>
+        <div className="accuracy-table">
+          <table>
           <thead>
             <tr>
               <th>Operation</th>
@@ -93,9 +98,11 @@ export default function DashboardScreen({ profile, sessions }: DashboardScreenPr
           </tbody>
         </table>
       </div>
+      </div>
 
-      <h2>Session Statistics</h2>
-      <div className="stats-grid">
+      <div className="dashboard-section">
+        <h2>Session Statistics</h2>
+        <div className="stats-grid">
         <div className="stat-item">
           <div className="stat-value">{sessions.length}</div>
           <div className="stat-label">Total Sessions</div>
@@ -111,10 +118,12 @@ export default function DashboardScreen({ profile, sessions }: DashboardScreenPr
           <div className="stat-label">Average Score</div>
         </div>
       </div>
+      </div>
 
-      <h2>Session Scores Over Time</h2>
-      {sessionScores.length > 0 ? (
-        <div className="score-chart">
+      <div className="dashboard-section">
+        <h2>Session Scores Over Time</h2>
+        {sessionScores.length > 0 ? (
+          <div className="score-chart">
           {sessionScores.slice(-10).map((score, index) => (
             <div key={index} className="chart-bar">
               <div className="bar-label">{score.date}</div>
@@ -129,13 +138,15 @@ export default function DashboardScreen({ profile, sessions }: DashboardScreenPr
           ))}
         </div>
       ) : (
-        <p>No sessions completed yet.</p>
-      )}
+          <p>No sessions completed yet.</p>
+        )}
+      </div>
       
-      <h2>Achievements</h2>
-      {allAchievements.length === 0 ? (
-        <p>No achievements yet. Keep practicing!</p>
-      ) : (
+      <div className="dashboard-section">
+        <h2>Achievements</h2>
+        {allAchievements.length === 0 ? (
+          <p>No achievements yet. Keep practicing!</p>
+        ) : (
         <>
           <div className="achievements-grid recent">
             {recentAchievements.map((achievement) => {
@@ -172,7 +183,7 @@ export default function DashboardScreen({ profile, sessions }: DashboardScreenPr
           )}
         </>
       )}
-      
+      </div>
     </div>
   );
 }

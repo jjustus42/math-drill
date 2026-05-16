@@ -102,7 +102,7 @@ function App() {
           />
         ) : null;
       case 'summary':
-        return <SummaryScreen session={lastSession} increasedOps={increasedOps} xpGain={xpGain} newAchievements={newAchievements} setScreen={setScreen} />;
+        return <SummaryScreen session={lastSession} increasedOps={increasedOps} xpGain={xpGain} newAchievements={newAchievements} setScreen={setScreen} showMainMenu={!!profile} />;
       case 'dashboard':
         return <DashboardScreen profile={profile} sessions={sessions} />;
       case 'settings':
@@ -115,7 +115,7 @@ function App() {
           />
         );
       case 'privacy':
-        return <PrivacyScreen setScreen={setScreen} />;
+        return <PrivacyScreen setScreen={setScreen} showMainMenu={!!profile} />;
       default:
         return (
           <HomeScreen
@@ -129,12 +129,12 @@ function App() {
 
   return (
     <div className="app">
-      {profile && screen !== 'profile-create' && screen !== 'summary' && (
+      {profile && screen !== 'profile-create' && (
         <NavBar currentScreen={screen} setScreen={setScreen} />
       )}
       {renderScreen()}
-      {screen !== 'drill' && screen !== 'summary' && (
-        <Footer setScreen={setScreen} currentScreen={screen} />
+      {screen === 'profile-create' && (
+        <Footer setScreen={setScreen} />
       )}
     </div>
   );

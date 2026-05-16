@@ -2,14 +2,9 @@ import type { Screen } from '../types';
 
 interface FooterProps {
   setScreen: (screen: Screen) => void;
-  currentScreen: Screen;
 }
 
-export default function Footer({ setScreen, currentScreen }: FooterProps) {
-  if (currentScreen === 'privacy') {
-    return null;
-  }
-
+export default function Footer({ setScreen }: FooterProps) {
   return (
     <footer className="footer">
       <button onClick={() => setScreen('privacy')} className="footer-link">
