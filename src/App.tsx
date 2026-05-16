@@ -17,7 +17,9 @@ import DrillScreen from './components/DrillScreen';
 import SummaryScreen from './components/SummaryScreen';
 import DashboardScreen from './components/DashboardScreen';
 import SettingsScreen from './components/SettingsScreen';
+import PrivacyScreen from './components/PrivacyScreen';
 import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 import './App.css';
 import type { Achievement } from './types';
 
@@ -112,6 +114,8 @@ function App() {
             clearProfileData={clearProfileData}
           />
         );
+      case 'privacy':
+        return <PrivacyScreen setScreen={setScreen} />;
       default:
         return (
           <HomeScreen
@@ -129,6 +133,9 @@ function App() {
         <NavBar currentScreen={screen} setScreen={setScreen} />
       )}
       {renderScreen()}
+      {screen !== 'drill' && screen !== 'summary' && (
+        <Footer setScreen={setScreen} currentScreen={screen} />
+      )}
     </div>
   );
 }

@@ -13,9 +13,64 @@ const defaultSettings = {
   includedOperations: ['add', 'sub', 'mul', 'div'] as Operation[],
 };
 
+const difficultyOptions = [
+  {
+    value: 1 as DifficultyLevel,
+    label: 'Beginner',
+    description: 'Single-digit operands',
+    example: {
+      add: '1+2',
+      sub: '9-2',
+      mul: '3×4',
+      div: '6÷2',
+    },
+  },
+  {
+    value: 2 as DifficultyLevel,
+    label: 'Developing',
+    description: 'Mixed single/double-digit operands',
+    example: {
+      add: '7+13',
+      sub: '15-8',
+      mul: '4×12',
+      div: '18÷3',
+    },
+  },
+  {
+    value: 3 as DifficultyLevel,
+    label: 'Proficient',
+    description: 'Double-digit operands',
+    example: {
+      add: '24+37',
+      sub: '56-19',
+      mul: '11×7',
+      div: '84÷7',
+    },
+  },
+  {
+    value: 4 as DifficultyLevel,
+    label: 'Advanced',
+    description: 'Multi-digit operands',
+    example: {
+      add: '124+278',
+      sub: '345-167',
+      mul: '23×15',
+      div: '144÷12',
+    },
+  },
+];
+
 export default function ProfileCreateScreen({ setProfile, setScreen }: ProfileCreateScreenProps) {
   const [name, setName] = useState('');
   const [selectedAvatar, setSelectedAvatar] = useState(avatars[0]);
+  const [difficultyLevels, setDifficultyLevels] = useState<Record<Operation, DifficultyLevel>>(defaultDifficultyLevels);
+
+  const handleDifficultyChange = (operation: Operation, value: DifficultyLevel) => {
+    setDifficultyLevels((current) => ({
+      ...current,
+      [operation]: value,
+    }));
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +79,7 @@ export default function ProfileCreateScreen({ setProfile, setScreen }: ProfileCr
       const profile: StudentProfile = {
         name: trimmedName,
         avatar: selectedAvatar,
-        difficultyLevels: defaultDifficultyLevels,
+        difficultyLevels,
         settings: defaultSettings,
       };
       setProfile(profile);
@@ -39,7 +94,7 @@ export default function ProfileCreateScreen({ setProfile, setScreen }: ProfileCr
         <div>
           <h1>Create Student Profile</h1>
           <p>
-            Set up your student with a name and avatar. The profile starts all operations at Beginner difficulty so practice begins where it should.
+            Please enter a name and select an avatar for your student.
           </p>
         </div>
       </div>
@@ -74,14 +129,40 @@ export default function ProfileCreateScreen({ setProfile, setScreen }: ProfileCr
         <div className="difficulty-preview">
           <h2>Starting Difficulty</h2>
           <div className="difficulty-grid">
-            <div>Addition: Beginner</div>
-            <div>Subtraction: Beginner</div>
-            <div>Multiplication: Beginner</div>
-            <div>Division: Beginner</div>
+            {(['add', 'sub', 'mul', 'div'] as Operation[]).map((operation) => {
+              const operationLabel = operation === 'add' ? 'Addition'
+                : operation === 'sub' ? 'Subtraction'
+                : operation === 'mul' ? 'Multiplication'
+                : 'Division';
+              const selectedOption = difficultyOptions.find((option) => option.value === difficultyLevels[operation]);
+
+              return (
+                <div key={operation} className="difficulty-item">
+                  <label>
+                    {operationLabel}:<span>&nbsp;&nbsp;</span>
+                    <select
+                      value={difficultyLevels[operation]}
+                      onChange={(e) => handleDifficultyChange(operation, Number(e.target.value) as DifficultyLevel)}
+                    >
+                      {difficultyOptions.map((option) => (
+                        <option key={option.value} value={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  {selectedOption && (
+                    <div className="difficulty-description">
+                      {selectedOption.description}, <em>e.g.</em> {selectedOption.example[operation]}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        <button type="submit" disabled={!name.trim()}>
+        <button type="submit" disabled={!name.trim()} className={name.trim() ? 'create-profile-ready' : ''}>
           {name.trim() ? 'Create Profile' : 'Enter a name'}
         </button>
       </form>

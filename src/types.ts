@@ -51,4 +51,4 @@ export interface Session {
   operations: Operation[];
 }
 
-export type Screen = 'home' | 'profile-create' | 'drill' | 'summary' | 'dashboard' | 'settings';
+export type Screen = 'home' | 'profile-create' | 'drill' | 'summary' | 'dashboard' | 'settings' | 'privacy';
