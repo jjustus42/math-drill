@@ -463,20 +463,3 @@ export function getSessionScoresOverTime(sessions: Session[]): Array<{ date: str
     return { date, score };
   });
 }
-
-export function getWeakestOperation(sessions: Session[]): Operation | null {
-  if (sessions.length === 0) return null;
-
-  const accuracies = getAccuracyByOperation(sessions);
-  let weakestOp: Operation | null = null;
-  let lowestAccuracy = 1;
-
-  Object.entries(accuracies).forEach(([op, accuracy]) => {
-    if (accuracy < lowestAccuracy) {
-      lowestAccuracy = accuracy;
-      weakestOp = op as Operation;
-    }
-  });
-
-  return weakestOp;
-}
