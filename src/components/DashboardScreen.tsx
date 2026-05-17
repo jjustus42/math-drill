@@ -7,7 +7,6 @@ import {
   getSessionsInTimeRange,
   getAccuracyByOperation,
   getSessionScoresOverTime,
-  getWeakestOperation,
   calculateDailyStreak,
 } from '../utils';
 
@@ -43,9 +42,6 @@ export default function DashboardScreen({ profile, sessions }: DashboardScreenPr
   // Get session scores for chart
   const sessionScores = getSessionScoresOverTime(sessions);
 
-  // Get weakest operation
-  const weakestOp = getWeakestOperation(sessions);
-
   // Get daily streak
   const dailyStreak = calculateDailyStreak(sessions);
 
@@ -64,16 +60,6 @@ export default function DashboardScreen({ profile, sessions }: DashboardScreenPr
         </ul>
       </div>
 
-      {weakestOp && (
-        <div className="dashboard-section">
-          <div className="focus-area">
-            <h2>🎯 Area to Focus On</h2>
-            <p>Your lowest accuracy is in <strong>{getOperationSymbol(weakestOp)}</strong>. 
-               Consider practicing this operation more!</p>
-          </div>
-        </div>
-      )}
-      
       <div className="dashboard-section">
         <h2>Accuracy by Time Period</h2>
         <div className="accuracy-table">
