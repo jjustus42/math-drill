@@ -460,25 +460,6 @@ input {
   transition: width 0.3s ease;
 }
 
-.focus-area {
-  background: linear-gradient(135deg, #fff3cd, #ffeaa7);
-  border: 2px solid #ffc107;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px 0;
-  text-align: center;
-}
-
-.focus-area h2 {
-  color: #856404;
-  margin: 0 0 10px 0;
-}
-
-.focus-area p {
-  margin: 0;
-  font-size: 1.1em;
-}
-
 .difficulty-list {
   list-style: none;
   padding: 0;
