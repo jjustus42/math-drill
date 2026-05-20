@@ -771,3 +771,7 @@ button.primary-button:hover:not(:disabled) {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+.problem form{
+  margin-top: 20px;
+}
