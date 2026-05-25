@@ -2,6 +2,8 @@
 
 Math Drills is a web-based arithmetic practice app built for early learners. It delivers adaptive addition, subtraction, multiplication, and division problems, tracks student progress, and includes a simple parent dashboard.
 
+![Alt Text](screenshots/create-profile.png)
+
 ## Features
 
 - Create a student profile with name and avatar
@@ -58,6 +60,7 @@ See [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) for full functional requirement
 - `src/types.ts` — TypeScript type definitions
 - `public/` — static assets
 - `docs/` — product and requirements documentation
+- `screenshots/` — application screenshots 
 
 ## Notes
 
