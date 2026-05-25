@@ -58,6 +58,11 @@ This project can be deployed as a static site. The current `npm run deploy` scri
 
 See [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md) for full functional requirements and user stories.
 
+## Privacy Policy
+
+See [docs/PRIVACY.md](docs/PRIVACY.md) for the privacy policy.
+
+
 ## Project Structure
 
 - `src/` — application source code
