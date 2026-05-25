@@ -101,17 +101,6 @@ button.danger:focus-visible {
   margin: 0 0 15px 0;
 }
 
-.drill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.drill-header h1 {
-  margin: 0;
-}
-
 input {
   padding: 8px;
   font-size: 16px;
@@ -570,10 +559,6 @@ h1 {
   margin-bottom: 40px;
 }
 
-.dashboard-screen h1 {
-  text-align: center;
-}
-
 .settings-section h2 {
   margin-top: 0;
   margin-bottom: 20px;
@@ -785,4 +770,8 @@ button.primary-button:hover:not(:disabled) {
 .settings-section button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+.problem form{
+  margin-top: 20px;
 }
