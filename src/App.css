@@ -775,3 +775,7 @@ button.primary-button:hover:not(:disabled) {
 .problem form{
   margin-top: 20px;
 }
+
+.privacy-screen {
+  text-align: left;
+}
