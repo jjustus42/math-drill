@@ -137,7 +137,7 @@ export default function DrillScreen({ profile, numProblems, sessions, addSession
             autoFocus
             disabled={!!feedback}
           />
-          <button type="submit" disabled={!!feedback}>Submit</button>
+          <button type="submit" disabled={!!feedback} className="primary-button">Submit</button>
         </form>
       </div>
       {feedback && <div className={`feedback ${feedback.startsWith('Correct') ? 'correct' : 'incorrect'}`}>{feedback}</div>}
